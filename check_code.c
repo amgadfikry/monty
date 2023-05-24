@@ -42,7 +42,7 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 	}
 	if (sizeof(func_list) / sizeof(instruction_t) == ++i)
 	{
-		fprintf(stderr, "L%d: unknown instruction <opcode>\n", line_num);
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, line_arr[0]);
 		exit(EXIT_FAILURE);
 	}
 	if (line_arr)
