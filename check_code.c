@@ -24,7 +24,10 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 
 	line_arr = code_from_line(line);
 	if (strlen(line_arr[0]) == 0)
+	{
+		free_array(line_arr);
 		return;
+	}
 	while (func_list[i].opcode)
 	{
 		if (strcmp(line_arr[0], func_list[i].opcode) == 0)
