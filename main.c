@@ -38,6 +38,6 @@ int main(int argc, char *argv[])
 	fclose(script);
 	free(line);
 	free_stack(stack);
-
+	exit(EXIT_SUCCESS);
 	return (0);
 }
