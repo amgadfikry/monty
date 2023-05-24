@@ -108,3 +108,21 @@ void pop(stack_t **stack, unsigned int line_num)
 	*stack = ptr;
 	}
 }
+
+/**
+ * free_stack - function free stack
+ * @stack: pointer to stack
+ * Return: nothing
+ */
+
+void free_stack(stack_t *stack)
+{
+	stack_t *ptr = stack;
+
+	while (ptr)
+	{
+		ptr = ptr->next;
+		free(stack);
+		stack = ptr;
+	}
+}
