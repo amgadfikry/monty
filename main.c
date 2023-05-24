@@ -7,7 +7,6 @@
  * @argv: list of arguments
  * Return: 0 on success or 1 for exit failure
  */
-
 int main(int argc, char *argv[])
 {
 	FILE *script;
@@ -38,6 +37,7 @@ int main(int argc, char *argv[])
 
 	fclose(script);
 	free(line);
+	free_stack(stack);
 
 	return (0);
 }
