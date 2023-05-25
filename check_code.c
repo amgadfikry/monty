@@ -2,20 +2,17 @@
 
 /**
  * check_code - check code in script if in function list or not
- * @line_arr: pointer to array of code
+ * @line: pointer to line
  * @stack: pointer to pointer of top of stack
  * @line_num: line number where code is in
  * Return: nothing
  */
-
-char *data = NULL;
 
 void check_code(char *line, stack_t **stack, unsigned int line_num)
 {
 	int i = 0;
 	char **line_arr;
 	instruction_t func_list[] = {
-		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
@@ -23,19 +20,18 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 	};
 
 	line_arr = code_from_line(line);
-	if (strlen(line_arr[0]) == 0)
-	{
-		free_array(line_arr);
+	if (line_arr == NULL)
 		return;
-	}
 	while (func_list[i].opcode)
 	{
+		if (strcmp(line_arr[0], "push") == 0)
+		{
+			push(stack, line_num, line_arr[1]);
+			break;
+		}
 		if (strcmp(line_arr[0], func_list[i].opcode) == 0)
 		{
-			if (strcmp(line_arr[0], "push") == 0)
-				data = line_arr[1];
 			func_list[i].f(stack, line_num);
-			data = NULL;
 			break;
 		}
 		i++;
@@ -45,6 +41,5 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, line_arr[0]);
 		exit(EXIT_FAILURE);
 	}
-	if (line_arr)
-		free_array(line_arr);
+	free(line_arr);
 }
