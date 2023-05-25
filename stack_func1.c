@@ -11,34 +11,33 @@
 void push(stack_t **stack, unsigned int line_num, char *data)
 {
 	stack_t *node;
-	int i = 0;
+	size_t i = 0;
 
 	while (data[i])
 	{
-		if (data[0] == '-')
+		if (data[i] == '-' && i == 0)
 		{
 			i++;
 			continue;
 		}
 		if (data[i] < 48 || data[i] > 57)
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_num);
-			exit(EXIT_FAILURE);
-		}
+			break;
 		i++;
 	}
-
+	if (strlen(data) == 0 || strlen(data) != i)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_num);
+		exit(EXIT_FAILURE);
+	}
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-
 	node->prev = NULL;
 	node->next = NULL;
 	node->n = atoi(data);
-
 	if (*stack == NULL)
 		*stack = node;
 	else
