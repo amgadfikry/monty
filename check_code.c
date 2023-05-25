@@ -51,7 +51,6 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 		{"rotr", rotr},
 		{NULL, NULL}
 	};
-
 	line_arr = code_from_line(line);
 
 	if (line_arr == NULL || line_arr[0][0] == '#')
@@ -60,9 +59,7 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 			free(line_arr);
 		return;
 	}
-
 	num = check_number(func_list, line_arr);
-
 	if (num >= 15)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, line_arr[0]);
@@ -72,7 +69,5 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 		push(stack, line_num, line_arr[1]);
 	else
 		func_list[num].f(stack, line_num);
-
 	free(line_arr);
 }
-
