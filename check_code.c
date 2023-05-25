@@ -51,7 +51,11 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 	line_arr = code_from_line(line);
 
 	if (line_arr == NULL || line_arr[0][0] == '#')
+	{
+		if (line_arr != NULL)
+			free(line_arr);
 		return;
+	}
 
 	num = check_number(func_list, line_arr);
 
