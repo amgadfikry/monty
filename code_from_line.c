@@ -59,6 +59,7 @@ char **code_from_line(char *line)
 	{
 		if (x == 2)
 			break;
+		remove_char(token, '$');
 		arr[x] = token;
 		x++;
 		token = strtok(NULL, " ");
