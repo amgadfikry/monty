@@ -104,3 +104,25 @@ void pchar(stack_t **stack, unsigned int line_num)
 
 	printf("%c\n", (*stack)->n);
 }
+
+/**
+ * pstr - print string start from top of stack till end
+ * @stack: pointer to pointer of stack
+ * @line_num: line number of code exce
+ * Return: nothing
+ */
+
+void pstr(stack_t **stack, unsigned int line_num)
+{
+	stack_t *ptr = *stack;
+	(void) line_num;
+
+	while (ptr)
+	{
+		if (ptr->n == 0 || ptr->n < 0 || ptr->n > 127)
+			break;
+		printf("%c", ptr->n);
+		ptr = ptr->next;
+	}
+	printf("\n");
+}
