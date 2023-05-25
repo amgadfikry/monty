@@ -40,6 +40,7 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
+		{"nop", nop},
 		{"sub", sub},
 		{"div", _div},
 		{"mul", mul},
@@ -50,7 +51,7 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 
 	line_arr = code_from_line(line);
 
-	if (line_arr == NULL || line_arr[0][0] == '#' || strcmp(line_arr[0], "nop") == 0)
+	if (line_arr == NULL || line_arr[0][0] == '#')
 	{
 		if (line_arr != NULL)
 			free(line_arr);
@@ -59,7 +60,7 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 
 	num = check_number(func_list, line_arr);
 
-	if (num >= 11)
+	if (num >= 12)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, line_arr[0]);
 		exit(EXIT_FAILURE);
