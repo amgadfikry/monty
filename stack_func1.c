@@ -11,20 +11,10 @@
 void push(stack_t **stack, unsigned int line_num, char *data)
 {
 	stack_t *node;
-	size_t i = 0;
+	size_t i;
 
-	while (data[i])
-	{
-		if (data[i] == '-' && i == 0)
-		{
-			i++;
-			continue;
-		}
-		if (data[i] < 48 || data[i] > 57)
-			break;
-		i++;
-	}
-	if (strlen(data) == 0 || strlen(data) != i)
+	i = num_or_not(data);
+	if (i == 0)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_num);
 		exit(EXIT_FAILURE);
