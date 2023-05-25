@@ -43,3 +43,66 @@ void swap(stack_t **stack, unsigned int line_num)
 	ptr->prev = NULL;
 	*stack = ptr;
 }
+
+/**
+ * add - function add two first elemnt in stack
+ * save result in second one and remove top
+ * @stack: pointer to pointer of stack
+ * @line_num: number of line where code exce
+ * Return: nothing
+ */
+
+void add(stack_t **stack, unsigned int line_num)
+{
+	stack_t *ptr;
+
+	if (stack_len(*stack) < 2)
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_num);
+		exit(EXIT_FAILURE);
+	}
+
+	ptr = (*stack)->next;
+	ptr->prev = NULL;
+	ptr->n = ((*stack)->n + ptr->n);
+	free(*stack);
+	*stack = ptr;
+}
+
+/**
+ * nop - function do nothing
+ * @stack: pointer to pointer of stack
+ * @line_num: line number of code exec
+ * Return: nothing
+ */
+
+void nop(stack_t **stack, unsigned int line_num)
+{
+	(void) stack;
+	(void) line_num;
+}
+
+/**
+ * sub - function sub top element from second top in stack
+ * save result in second one and remove top
+ * @stack: pointer to pointer of stack
+ * @line_num: number of line where code exce
+ * Return: nothing
+ */
+
+void sub(stack_t **stack, unsigned int line_num)
+{
+	stack_t *ptr;
+
+	if (stack_len(*stack) < 2)
+	{
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line_num);
+		exit(EXIT_FAILURE);
+	}
+
+	ptr = (*stack)->next;
+	ptr->prev = NULL;
+	ptr->n = (ptr->n - (*stack)->n);
+	free(*stack);
+	*stack = ptr;
+}
