@@ -47,6 +47,7 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 		{"mod", mod},
 		{"pchar", pchar},
 		{"pstr", pstr},
+		{"rotl", rotl},
 		{NULL, NULL}
 	};
 
@@ -61,7 +62,7 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 
 	num = check_number(func_list, line_arr);
 
-	if (num >= 13)
+	if (num >= 14)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, line_arr[0]);
 		exit(EXIT_FAILURE);
