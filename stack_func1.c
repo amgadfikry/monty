@@ -22,7 +22,7 @@ void push(stack_t **stack, unsigned int line_num, char *data)
 		}
 		if (data[i] < 48 || data[i] > 57)
 		{
-			fprintf(stderr, "L%d:usage: push integer\n", line_num);
+			fprintf(stderr, "L%d: usage: push integer\n", line_num);
 			exit(EXIT_FAILURE);
 		}
 		i++;
