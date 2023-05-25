@@ -40,17 +40,17 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
-		{"nop", nop},
 		{"sub", sub},
 		{"div", _div},
 		{"mul", mul},
 		{"mod", mod},
+		{"pchar", pchar},
 		{NULL, NULL}
 	};
 
 	line_arr = code_from_line(line);
 
-	if (line_arr == NULL || line_arr[0][0] == '#')
+	if (line_arr == NULL || line_arr[0][0] == '#' || strcmp(line_arr[0], "nop") == 0)
 	{
 		if (line_arr != NULL)
 			free(line_arr);
