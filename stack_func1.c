@@ -4,10 +4,11 @@
  * push - function that push new data to degin of stack
  * @stack: pointer to pointer of stack top
  * @line_num: number of line which command run
+ * @data: num you want to push
  * Return: nothing
  */
 
-void push(stack_t **stack, unsigned int line_num)
+void push(stack_t **stack, unsigned int line_num, char *data)
 {
 	stack_t *node;
 	int num;
