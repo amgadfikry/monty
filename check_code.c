@@ -20,11 +20,14 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 		{"add", add},
 		{"nop", nop},
 		{"sub", sub},
+		{"div", div},
+		{"mul", mul},
+		{"mod", mod},
 		{NULL, NULL}
 	};
 
 	line_arr = code_from_line(line);
-	if (line_arr == NULL)
+	if (line_arr == NULL || strcmp(line_arr[0], "#") == 0)
 		return;
 	while (func_list[i].opcode)
 	{
