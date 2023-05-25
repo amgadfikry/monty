@@ -11,15 +11,22 @@
 void push(stack_t **stack, unsigned int line_num, char *data)
 {
 	stack_t *node;
-	int num;
+	int i = 0;
 
-	num = atoi(data);
-	if ((num == 0 && strcmp(data, "0") != 0) || data == NULL)
+	while (data[i])
 	{
-		fprintf(stderr, "L%d:usage: push integer\n", line_num);
-		exit(EXIT_FAILURE);
+		if (data[0] == '-')
+		{
+			i++;
+			continue;
+		}
+		if (data[i] < 48 || data[i] > 57)
+		{
+			fprintf(stderr, "L%d:usage: push integer\n", line_num);
+			exit(EXIT_FAILURE);
+		}
+		i++;
 	}
-
 
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
@@ -30,7 +37,7 @@ void push(stack_t **stack, unsigned int line_num, char *data)
 
 	node->prev = NULL;
 	node->next = NULL;
-	node->n = num;
+	node->n = atoi(data);
 
 	if (*stack == NULL)
 		*stack = node;
