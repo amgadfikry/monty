@@ -17,6 +17,9 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 		{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
+		{"add", add},
+		{"nop", nop},
+		{"sub", sub},
 		{NULL, NULL}
 	};
 
