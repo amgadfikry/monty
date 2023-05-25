@@ -1,6 +1,28 @@
 #include "monty.h"
 
 /**
+ * check_number - function check if code in list of codes
+ * @func_list: list of function in stack
+ * @line_arr: array of code in script
+ * Return: number in list or -1 if push
+ */
+
+int check_number(instruction_t func_list[], char **line_arr)
+{
+	int i = 0;
+
+	while (func_list[i].opcode)
+	{
+		if (strcmp(line_arr[0], "push") == 0)
+			return (-1);
+		if (strcmp(line_arr[0], func_list[i].opcode) == 0)
+			return (i);
+		i++;
+	}
+	return (++i);
+}
+
+/**
  * check_code - check code in script if in function list or not
  * @line: pointer to line
  * @stack: pointer to pointer of top of stack
@@ -10,7 +32,7 @@
 
 void check_code(char *line, stack_t **stack, unsigned int line_num)
 {
-	int i = 0;
+	int num;
 	char **line_arr;
 	instruction_t func_list[] = {
 		{"pall", pall},
@@ -27,26 +49,22 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 	};
 
 	line_arr = code_from_line(line);
+
 	if (line_arr == NULL || line_arr[0][0] == '#')
 		return;
-	while (func_list[i].opcode)
-	{
-		if (strcmp(line_arr[0], "push") == 0)
-		{
-			push(stack, line_num, line_arr[1]);
-			break;
-		}
-		if (strcmp(line_arr[0], func_list[i].opcode) == 0)
-		{
-			func_list[i].f(stack, line_num);
-			break;
-		}
-		i++;
-	}
-	if (sizeof(func_list) / sizeof(instruction_t) == ++i)
+
+	num = check_number(func_list, line_arr);
+
+	if (num >= 11)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, line_arr[0]);
 		exit(EXIT_FAILURE);
 	}
+	else if (num < 0)
+		push(stack, line_num, line_arr[1]);
+	else
+		func_list[num].f(stack, line_num);
+
 	free(line_arr);
 }
+
