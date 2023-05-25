@@ -20,7 +20,7 @@ void check_code(char *line, stack_t **stack, unsigned int line_num)
 		{"add", add},
 		{"nop", nop},
 		{"sub", sub},
-		{"div", div},
+		{"div", _div},
 		{"mul", mul},
 		{"mod", mod},
 		{NULL, NULL}

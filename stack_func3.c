@@ -7,7 +7,7 @@
  * Return: nothing
  */
 
-void div(stack_t **stack, unsigned int line_num)
+void _div(stack_t **stack, unsigned int line_num)
 {
 	stack_t *ptr;
 
