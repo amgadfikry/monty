@@ -42,7 +42,7 @@ void rotr(stack_t **stack, unsigned int line_num)
 	stack_t *ptr = *stack;
 	(void) line_num;
 
-	if (*stack != NULL || (*stack != NULL && (*stack)->next != NULL))
+	if (stack_len(*stack) > 1)
 	{
 		while (ptr)
 		{
